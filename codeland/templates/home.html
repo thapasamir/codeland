@@ -58,7 +58,20 @@ function typeWriter() {
 }
 typeWriter();
 </script>
-	
-
+	<div class="container-xxl">
+		<h1 class="text-center">Available topic:</h1>
+		<div class="row row-cols-1 row-cols-md-3 g-2 px-4">
+		{% for i in passing %}
+			<div class="card px-4" style="width: 20rem;margin-left:20px;">
+			  <div class="card-body" >
+			    <h5 class="card-title">{{i.name}}</h5>
+			    <p class="card-text">{{i.description}}</p>
+			    <a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+			  <br>
+			</div>
+		{% endfor %}		
+		</div>
+	</div>
 {%endif%}
 {%endblock%}
