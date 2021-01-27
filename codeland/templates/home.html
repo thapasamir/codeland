@@ -1,0 +1,64 @@
+{%extends 'base_templates.html'%}
+{%load static%}
+{%block mainbody%}
+{%if cateo%} {# if the contex have cateo then this will run #}
+<div class="welcome">
+	<h1 id="welcome"></h1>
+	<h2>Categories</h2>
+</div>
+<script>
+var i = 0; //Typewriter for welcome
+var txt = 'Welcome to codeland';
+var speed = 50;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("welcome").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+typeWriter();
+</script>
+<div class="container-xxl"> {# Main container #}
+	<div class="row row-cols-1 row-cols-md-3 g-4">{# box1 #}
+	  {%for i in cateo%}
+	  <div class="col">
+	    <div class="card h-100">
+	      <img src="{{i.thumbnail.url}}" class="card-img-top" alt="...">
+	      <div class="card-body">
+	        <h5 class="card-title">{{i.name}}</h5>
+	        <p class="card-text">{{i.description}}</p>
+	      </div>
+	      		<a href="{%url 'detail' i.slug%}" class="btn btn-success">Go somewhere</a>
+	      <div class="card-footer">
+	        <small class="text-muted">Upload Date : {{i.upload_date}}</small>
+	      </div>
+	    </div>
+	  </div>
+	  {%endfor%}
+	  </div>
+	</div>
+</div>
+{%else%}
+<div class="welcome">
+	<h1 id="welcome"></h1>
+</div>
+<script>
+var i = 0; //Typewriter for welcome
+var txt = '{{cateogies.name}}';
+var speed = 50;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("welcome").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+typeWriter();
+</script>
+	
+
+{%endif%}
+{%endblock%}
